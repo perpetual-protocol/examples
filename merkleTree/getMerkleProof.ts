@@ -2,7 +2,7 @@ import { soliditySha3, toWei } from "web3-utils";
 
 import { loadTree } from "./merkleTree";
 
-export function getMerkleProof(userAddress, balances) {
+export function getClaimWeekContractParams(week, userAddress, balances) {
   const claimBalance = balances[userAddress];
   const merkleTree = loadTree(balances);
 
@@ -11,6 +11,7 @@ export function getMerkleProof(userAddress, balances) {
   );
 
   return {
+    week,
     balance: toWei(claimBalance),
     merkleProof: proof
   };
